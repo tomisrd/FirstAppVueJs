@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="Shop">
+        <div id="app">
+        <div class="S-Card">
+            <img :src="Base.image.source" :alt="Base.image.alt" />
+                <div class="info">
+                    <h1 class="U-Title">
+                       <strong>SÉRIE</strong> <span>PRO</span> 
+                 
+                    <h1 class="title">Pro X</h1>
+                    <p>159€</p>
+                    <form>
+                        <label for="color">Choose a color:</label>
+                        <select @change="changeproduct()" v-model="selected" name="color" id="color">
+                          <option value="0">Black</option>
+                          <option value="1">Red</option>
+                          <option value="2">White</option>
+                        </select>
+                      </form>
+                      <p v-if="Base.inStock">In Stock</p>
+                      <p v-else>Out of Stock</p>
+                    <button  :disabled="!Base.inStock">
+                        Ajouter au panier 
+                    </button>
+                    <p>
+                        Moins de 63 grammes. Faible latence avancée sans fil LIGHTSPEED. Précision à l'échelle du sous-micron grâce au capteur HERO 25K. Supprimez tous les obstacles grâce à la souris PRO la plus légère et la plus rapide que nous n’ayons jamais produite.
+                    </p>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="whitesmoke" class="bag" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+              </svg>
+                    
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+				el: "#app",
+                data: {
+                    selected:"",
+                    Base: 
+						{ name: "black",
+						 image: {
+							source: "pro-x-superlight-black-gallery-1.webp",
+							alt: "Black"
+							    },
+						inStock: true,
+						},
+                    simpleMenu: [
+						{
+							name: "black",
+							image: {
+								source: "pro-x-superlight-black-gallery-1.webp",
+								alt: "Black"
+							},
+							inStock: true,
+						},
+						{
+							name: "red",
+							image: {
+								source: "bazooka-magenta-gallery-1.webp",
+								alt: "Red"
+							},
+							inStock: false,
+						},
+						{
+							name: "white",
+							image: {
+								source: "pro-x-superlight-white-gallery-1.webp",
+								alt: "White"
+							},
+							inStock: true,
+						},
+					]
+			}
+            ,methods:{
+                changeproduct(){ 
+                this.Base=this.simpleMenu[this.selected]
+               }
+            }
+            
+
+            
+        }
+    )
+</script>
+    
+</body>
+</html>
